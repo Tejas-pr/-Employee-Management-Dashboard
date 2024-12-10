@@ -3,7 +3,7 @@ import React from 'react'
 const AddEmployee = () => {
   return (
     <div>
-      ADDEM
+      
     </div>
   )
 }

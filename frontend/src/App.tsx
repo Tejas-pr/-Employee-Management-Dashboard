@@ -6,10 +6,12 @@ import Dashboard from './pages/Dashboard';
 import AddEmployee from './pages/AddEmployee';
 import EmployeeDetails from './pages/EmployeeDetails';
 import EditEmployee from './pages/EditEmployee';
+import { useTheme } from './context/Context';
 
 const App: React.FC = () => {
+  const { theme } = useTheme();
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className={`min-h-screen ${theme === "dark" ? "bg-gray-900 text-white" : "bg-white text-black"}`}>
       <Navbar />
       <div className="p-4">
         <Routes>
