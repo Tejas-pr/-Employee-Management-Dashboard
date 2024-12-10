@@ -6,3 +6,6 @@ export const getEmployees = async () => {
     return response.data;
 };
 
+export const addEmplee = () => {
+    
+}
