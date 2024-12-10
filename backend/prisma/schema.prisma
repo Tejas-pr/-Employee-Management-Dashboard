@@ -16,11 +16,11 @@ model User {
 }
 
 model Employee {
-  id          Int      @id @default(autoincrement())
+  userId      Int?
+  empid          Int      @id @default(autoincrement())
   name        String
   department  String
   dateJoined  DateTime
   email       String    @unique
-  userId      Int?
   user        User?     @relation(fields: [userId], references: [id])
 }
