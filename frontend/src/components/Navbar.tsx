@@ -4,9 +4,15 @@ import { FaBars } from "react-icons/fa";
 import { useState } from "react";
 import { IoCloseOutline } from "react-icons/io5";
 import AlertDialogSlide from "./addEmpPop";
+import Button from "@mui/material/Button";
 
 const Navbar = () => {
   const [navToggle, setnavToggle] = useState(true);
+  const removeToken = () => {
+    localStorage.removeItem("token");
+    window.location.reload();
+  };
+  const currentToken = localStorage.getItem("token");
   return (
     <div>
       <nav className="bg-blue-500 text-white p-3">
@@ -39,6 +45,25 @@ const Navbar = () => {
               <div className="mx-4 bg-white rounded-lg">
                 <AlertDialogSlide />
               </div>
+              {!currentToken ? (
+                <div className="mx-4 bg-white rounded-lg">
+                  <Link to="/signin">
+                    <Button variant="contained" disableElevation>
+                      Sign In
+                    </Button>
+                  </Link>
+                </div>
+              ) : (
+                <div className="mx-4 bg-white rounded-lg">
+                  <Button
+                    onClick={removeToken}
+                    variant="contained"
+                    disableElevation
+                  >
+                    Log Out
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -64,6 +89,25 @@ const Navbar = () => {
               <div>
                 <AlertDialogSlide />
               </div>
+              {!currentToken ? (
+                <div className="mt-2">
+                  <Link to="/signin">
+                    <Button variant="contained" disableElevation>
+                      Sign In
+                    </Button>
+                  </Link>
+                </div>
+              ) : (
+                <div className="mt-2">
+                  <Button
+                    onClick={removeToken}
+                    variant="contained"
+                    disableElevation
+                  >
+                    Log Out
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
         )}
