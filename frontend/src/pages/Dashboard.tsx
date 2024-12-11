@@ -1,10 +1,9 @@
 
 const Dashboard = () => {
-  const currentFont = localStorage.getItem("token");
-  console.log(currentFont);
   return (
     <div>
       DASHBOARD
+      {/* https://mui.com/x/react-charts/lines/  */}
     </div>
   )
 }

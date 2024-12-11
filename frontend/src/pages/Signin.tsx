@@ -1,8 +1,10 @@
+import { CircularProgress } from "@mui/material";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Signin = () => {
+  const [loading, setloading] = useState<boolean | null>(false);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const [token, setToken] = useState<string | null>(null);
@@ -10,7 +12,7 @@ const Signin = () => {
 
   const siginHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    setloading(true);
     const email = emailRef.current?.value;
     const password = passwordRef.current?.value;
     try {
@@ -23,11 +25,14 @@ const Signin = () => {
         }
       });
       const token = response.data.token;
+      console.log("token at sign in ", token);
       setToken(token);
+      setloading(false);
       navigate("/dashboard");
     } catch (error) {
       console.error("Sign-in error:", error);
       alert("Error signing in. Please try again.");
+      setloading(false);
     }
   }
 
@@ -109,7 +114,7 @@ const Signin = () => {
                   type="submit"
                   className="w-full text-black bg-primary-600 border border-gray-300 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
-                  Sign In
+                  {loading ? <CircularProgress size={15}/> : "Sign In"}
                 </button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Don’t have an account yet?{" "}
